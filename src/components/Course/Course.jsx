@@ -5,13 +5,13 @@ import CourseDispaly from '../CourseDispaly/CourseDispaly';
 
 const Course = () => {
     const educationData = useLoaderData()
-    
+
     return (
         <div className='grid lg:grid-cols-[1fr_4fr] gap-4 w-11/12 mx-auto'>
             <div className='ml-10 border p-8'>
                 <h1 className='text-5xl font-bold mb-8'>Our Courses</h1>
                 {
-                    educationData.map(catagory =><Catagory key={catagory.id} catagory={catagory}></Catagory>)
+                    educationData.map(catagory => <Catagory key={catagory.id} catagory={catagory}></Catagory>)
                 }
             </div>
             <div className='grid grid-cols-3 gap-6 ml-40 p-5' >
