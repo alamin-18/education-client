@@ -8,6 +8,7 @@ import LogIn from './components/LogIn/LogIn';
 import Register from './components/Register/Register';
 import Faq from './components/Faq/Faq';
 import Home from './components/Home/Home';
+import Details from './components/Details/Details';
 
 function App() {
   const router = createBrowserRouter([
@@ -16,6 +17,9 @@ function App() {
       {path:'/',element: <Home></Home>},
       {path:'/course',element: <Course></Course>,
     loader: ()=> fetch("http://localhost:5000/allcourse")
+    },
+      {path:'/course/:id',element: <Details></Details>,
+    loader: ({params})=> fetch(`http://localhost:5000/allcourse/${params.id}`)
     },
       {path:'/faq',element: <Faq></Faq>},
       {path:'/logIn',element: <LogIn></LogIn>},
