@@ -6,15 +6,14 @@ const Header = () => {
         <div>
             <div className="navbar bg-slate-700">
   <div className="flex-1">
-    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+    <Link to='/' className="btn btn-ghost normal-case text-xl">daisyUI</Link>
   </div>
   <div className="flex-none">
     <ul className="menu menu-horizontal p-0">
-      <li><Link>Course</Link></li>
-      <li><Link>FAQ</Link></li>
-      <li><Link>Course</Link></li>
-      <li><Link>Course</Link></li>
-      
+      <li><Link to='/course'>Course</Link></li>
+      <li><Link to='/faq'>FAQ</Link></li>
+      <li><Link to='/logIn'>Log In</Link></li>
+      <li><Link to='/register'>SingUp</Link></li>
     </ul>
   </div>
 </div>
