@@ -1,44 +1,50 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
-import { Result } from 'postcss';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserContext/UserContext';
 
 const LogIn = () => {
-    const {logIn,googleSingin,gitHubSingin} = useContext(AuthContext)
+    const { logIn, googleSingin, gitHubSingin } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location =useLocation()
+    const from = location.state?.from?.pathname || '/';
     //email password
-    const handleLogin = event =>{
+    const handleLogin = event => {
         event.preventDefault();
         const form = event.target
         const email = form.email.value
         const password = form.password.value
-        logIn(email,password)
-        .then(result =>{
-            const user = result.user
-            console.log(user);
-        })
-        // console.log(email,password)
+        logIn(email, password)
+            .then(result => {
+                const user = result.user
+                console.log(user);
+            })
+            .catch(error => console.log(error))
+            // console.log(email,password)
+        navigate(from, {replace: true})
 
     }
     //google auth
     const googleProvider = new GoogleAuthProvider()
-    const handleGoogleSingin = () =>{
+    const handleGoogleSingin = () => {
         googleSingin(googleProvider)
-        .then(result =>{
-            const user = result.user
-            console.log(user)
-        })
-        .then(error => console.log(error))
+            .then(result => {
+                const user = result.user
+                console.log(user)
+            })
+            .catch(error => console.log(error))
+        navigate(from,{replace: true})
     }
     //github auth
     const gitHubProvider = new GithubAuthProvider()
-    const handleGitHubSingin = () =>{
+    const handleGitHubSingin = () => {
         gitHubSingin(gitHubProvider)
-        .then(result =>{
-            const user = result.user
-            console.log(user)
-        })
-        .then(error => console.log(error))
+            .then(result => {
+                const user = result.user
+                console.log(user)
+            })
+            .catch(error => console.log(error))
+        navigate(from,{replace: true})
     }
     return (
         <div>
@@ -73,10 +79,10 @@ const LogIn = () => {
                             </div>
                         </form>
                         <div className="form-control mt-6">
-                                <button onClick={handleGoogleSingin} className="btn btn-primary">Login with Google</button>
+                            <button onClick={handleGoogleSingin} className="btn btn-primary">Login with Google</button>
                         </div>
                         <div className="form-control mt-6">
-                                <button onClick={handleGitHubSingin} className="btn btn-primary">Login with GitHub</button>
+                            <button onClick={handleGitHubSingin} className="btn btn-primary">Login with GitHub</button>
                         </div>
                     </div>
                 </div>

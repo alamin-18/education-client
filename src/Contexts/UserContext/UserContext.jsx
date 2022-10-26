@@ -6,39 +6,46 @@ import { app } from '../../firebase/firebase.config';
 
 const auth = getAuth(app)
 export const AuthContext = createContext()
-const UserContext = ({children}) => {
+const UserContext = ({ children }) => {
     //user state
-    const [user,setUser] = useState({})
+    const [user, setUser] = useState({})
+    const [lodding,setLodding] = useState(true)
 
     //create user
-    const register = (email,password) =>{
-       return createUserWithEmailAndPassword(auth,email,password)
+    const register = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
     }
-    const logIn = (email,password) =>{
-        return signInWithEmailAndPassword(auth,email,password)
+    const logIn = (email, password) => {
+        setLodding(true)
+        return signInWithEmailAndPassword(auth, email, password)
     }
-    const profileUpdate = (name,photoUrl)=>{
-        return updateProfile(name,photoUrl)
+    const profileUpdate = (name, photoUrl) => {
+        return updateProfile(name, photoUrl)
     }
-    const googleSingin = (provider) =>{
-        return signInWithPopup(auth,provider)
+    const googleSingin = (provider) => {
+        setLodding(true)
+        return signInWithPopup(auth, provider)
     }
-    const gitHubSingin = (provider) =>{
-        return signInWithPopup(auth,provider)
+    const gitHubSingin = (provider) => {
+        setLodding(true)
+        return signInWithPopup(auth, provider)
     }
-    const logOut = ()=>{
-        signOut(auth)
+    const logOut = () => {
+        setLodding(true)
+        return signOut(auth)
     }
-    useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(auth,currentUser =>{
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            console.log(currentUser)
             setUser(currentUser)
+            setLodding(false)
         })
-        return () =>{
+        return () => {
             unsubscribe()
         }
-    },[])
+    }, [])
 
-    const AuthInfo ={user,register,logIn,profileUpdate,googleSingin,gitHubSingin,logOut}
+    const AuthInfo = { user,lodding, register, logIn, profileUpdate, googleSingin, gitHubSingin, logOut }
     return (
         <AuthContext.Provider value={AuthInfo}>
             {children}

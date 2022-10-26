@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import ReactToPdf from "react-to-pdf";
+
 
 const Details = () => {
     const details = useLoaderData()
     console.log(details);
-    const { CourseDescription, CourseName, Instructor, basicInfo, picture, group } = details
+    const { CourseDescription, CourseName, Instructor, basicInfo, picture, group } = details;
+    const ref = React.createRef();
     return (
-        <div className='w-2/4 mx-auto border border-red-600'>
+        <div ref={ref} className='w-2/4 mx-auto border border-red-600'>
+
             <img className='' src={picture} alt="" />
             <div className='p-10'>
                 <small>{group}</small>
@@ -34,8 +38,18 @@ const Details = () => {
                 </div>
                 <h1 className='text-3xl font-bold mt-10 mb-4'>Course Description</h1>
                 <p>{CourseDescription}</p>
-                <Link to={``}><button className="btn btn-outline btn-primary rounded-none mt-5 w-full">Apply</button></Link>
+                <Link to={`../checkout/${details.id}`}><button className="btn btn-outline btn-primary rounded-none mt-5 w-full">Apply</button></Link>
             </div>
+            <div>
+
+            </div>
+            <ReactToPdf targetRef={ref} filename="details.pdf">
+                {({ toPdf }) => (
+                    <button className="btn btn-danger btn-sm" onClick={toPdf}>
+                        Generate pdf
+                    </button>
+                )}
+            </ReactToPdf>
         </div>
     );
 };

@@ -9,8 +9,14 @@ import Register from './components/Register/Register';
 import Faq from './components/Faq/Faq';
 import Home from './components/Home/Home';
 import Details from './components/Details/Details';
+import CheckOut from './components/CheckOut/CheckOut';
+import PrivetRoute from './components/PrivetRoute/PrivetRoute';
+import { useContext } from 'react';
+import  { ThemeContext } from './Contexts/Theme/Theme';
+
 
 function App() {
+  const {dark} = useContext(ThemeContext)
   const router = createBrowserRouter([
     {path:'/',element: <Main></Main>,
      children:[
@@ -23,11 +29,14 @@ function App() {
     },
       {path:'/faq',element: <Faq></Faq>},
       {path:'/logIn',element: <LogIn></LogIn>},
-      {path:'/register',element: <Register></Register>}
+      {path:'/register',element: <Register></Register>},
+      {path:'/checkout/:id',element: <PrivetRoute><CheckOut></CheckOut></PrivetRoute>,
+      loader: ({params})=> fetch(`http://localhost:5000/allcourse/${params.id}`)
+    }
     ]}
   ])
   return (
-    <div >
+    <div data-theme={dark ? `light`:`dark`}>
       <RouterProvider router={router}></RouterProvider>
     </div>
   );
