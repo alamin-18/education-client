@@ -6,6 +6,7 @@ import { AuthContext } from '../../Contexts/UserContext/UserContext';
 
 const LogIn = () => {
     const {logIn,googleSingin,gitHubSingin} = useContext(AuthContext)
+    //email password
     const handleLogin = event =>{
         event.preventDefault();
         const form = event.target
@@ -19,6 +20,7 @@ const LogIn = () => {
         // console.log(email,password)
 
     }
+    //google auth
     const googleProvider = new GoogleAuthProvider()
     const handleGoogleSingin = () =>{
         googleSingin(googleProvider)
@@ -28,6 +30,7 @@ const LogIn = () => {
         })
         .then(error => console.log(error))
     }
+    //github auth
     const gitHubProvider = new GithubAuthProvider()
     const handleGitHubSingin = () =>{
         gitHubSingin(gitHubProvider)
