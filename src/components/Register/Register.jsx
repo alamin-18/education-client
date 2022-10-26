@@ -1,9 +1,10 @@
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserContext/UserContext';
 
 const Register = () => {
-    const {register} = useContext(AuthContext)
+    const {register,profileUpdate,googleSingin,gitHubSingin} = useContext(AuthContext)
     const handleSubmit = event =>{
         event.preventDefault();
         const form = event.target
@@ -21,9 +22,27 @@ const Register = () => {
             console.error(error)
             // ..
           });
-        // console.log(name,photoUrl,email,password)
 
     }
+    const googleProvider = new GoogleAuthProvider()
+    const handleGoogleSingin = () =>{
+        googleSingin(googleProvider)
+        .then(result =>{
+            const user = result.user
+            console.log(user)
+        })
+        .then(error => console.log(error))
+    }
+    const gitHubProvider = new GithubAuthProvider()
+    const handleGitHubSingin = () =>{
+        gitHubSingin(gitHubProvider)
+        .then(result =>{
+            const user = result.user
+            console.log(user)
+        })
+        .then(error => console.log(error))
+    }
+
     return (
         <div>
              <div className="hero min-h-screen bg-base-200">
@@ -67,6 +86,12 @@ const Register = () => {
                             </div>
                         </div>
                         </form>
+                        <div className="form-control mt-6">
+                                <button onClick={handleGoogleSingin} className="btn btn-primary">Sing Up with Google</button>
+                        </div>
+                        <div className="form-control mt-6">
+                                <button onClick={handleGitHubSingin} className="btn btn-primary">Sing Up with GitHub</button>
+                        </div>
                     </div>
                 </div>
             </div>

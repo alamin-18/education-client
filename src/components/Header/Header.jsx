@@ -16,7 +16,7 @@ const Header = () => {
             <li><Link to='/faq'>FAQ</Link></li>
             <li><Link to='/logIn'>Log In</Link></li>
             <li><Link to='/register'>SingUp</Link></li>
-            <li>{user.name}</li>
+            <li>{user?.displayName}</li>
           </ul>
         </div>
       </div>
