@@ -1,11 +1,12 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserContext/UserContext';
 
 const Register = () => {
     const { register, profileUpdate, googleSingin, gitHubSingin } = useContext(AuthContext)
+    const navigate = useNavigate()
     const handleSubmit = event => {
         event.preventDefault();
         const form = event.target
@@ -26,6 +27,7 @@ const Register = () => {
                 toast.error(errorMessage)
                 // ..
             });
+            navigate('/profile')
 
     }
     const googleProvider = new GoogleAuthProvider()

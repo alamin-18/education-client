@@ -4,6 +4,7 @@ import { ThemeContext } from '../../Contexts/Theme/Theme';
 import { AuthContext } from '../../Contexts/UserContext/UserContext';
 import { Bars3Icon, MoonIcon, SunIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { useState } from 'react';
+import logo from '../../img/logo.png'
 
 const Header = () => {
   const {dark,setDrak} = useContext(ThemeContext)
@@ -21,7 +22,7 @@ const Header = () => {
     <div>
       <div className="flex py-4 justify-between bg-slate-700">
         <div className="">
-          <Link to='/' className=" ml-4 text-xl">daisyUI</Link>
+          <Link to='/' className=" ml-4 text-xl flex gap-1"><img className='w-14' src={logo} alt="" />Edulearn</Link>
         </div>
         <div onClick={()=> setOpen(!open)} className='w-8 md:hidden lg:hidden'>
         {open ?<XMarkIcon ></XMarkIcon>: <Bars3Icon></Bars3Icon>}

@@ -14,12 +14,16 @@ import PrivetRoute from './components/PrivetRoute/PrivetRoute';
 import { useContext } from 'react';
 import  { ThemeContext } from './Contexts/Theme/Theme';
 import { Toaster } from 'react-hot-toast';
+import Error from './components/Error/Error';
+import Blog from './components/Blog/Blog';
+import Profile from './components/Profile/Profile';
 
 
 function App() {
   const {dark} = useContext(ThemeContext)
   const router = createBrowserRouter([
     {path:'/',element: <Main></Main>,
+    errorElement:<Error></Error>,
      children:[
       {path:'/',element: <Home></Home>},
       {path:'/course',element: <Course></Course>,
@@ -33,7 +37,9 @@ function App() {
       {path:'/register',element: <Register></Register>},
       {path:'/checkout/:id',element: <PrivetRoute><CheckOut></CheckOut></PrivetRoute>,
       loader: ({params})=> fetch(`http://localhost:5000/allcourse/${params.id}`)
-    }
+    },
+    {path:'/blog',element:<Blog></Blog>},
+    {path:'/profile',element:<Profile></Profile>}
     ]}
   ])
   return (

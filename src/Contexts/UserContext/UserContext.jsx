@@ -19,8 +19,8 @@ const UserContext = ({ children }) => {
         setLodding(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
-    const profileUpdate = (name, photoUrl) => {
-        return updateProfile(name, photoUrl)
+    const profileUpdate = (profile) => {
+        return updateProfile(auth.currentUser,profile)
     }
     const googleSingin = (provider) => {
         setLodding(true)
