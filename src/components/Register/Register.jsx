@@ -5,19 +5,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserContext/UserContext';
 
 const Register = () => {
-    const { register, profileUpdate, googleSingin, gitHubSingin } = useContext(AuthContext)
+    const { register,  googleSingin, gitHubSingin } = useContext(AuthContext)
     const navigate = useNavigate()
     const handleSubmit = event => {
         event.preventDefault();
         const form = event.target
-        const name = form.name.value
-        const photoUrl = form.photoUrl.value
         const email = form.email.value
         const password = form.password.value
 
         register(email, password)
             .then((result => {
-                const user = result.user
+                // const user = result.user
                 toast.success(`Successfully sing in!`)
                 // console.log(user)
             }))
@@ -34,7 +32,7 @@ const Register = () => {
     const handleGoogleSingin = () => {
         googleSingin(googleProvider)
             .then(result => {
-                const user = result.user
+                // const user = result.user
                 toast.success(`Successfully sing in!`)
                 // console.log(user)
             })

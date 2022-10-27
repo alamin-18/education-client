@@ -1,5 +1,16 @@
 # Getting Started with Create React App
 
+## Live site Link
+### link: https://education-website-18721.web.app/
+
+## Features
+- use Tailwind css
+- daisy ui components
+- firebase auth
+- hero icone
+- pdf genarate
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

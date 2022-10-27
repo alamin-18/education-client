@@ -27,16 +27,16 @@ function App() {
      children:[
       {path:'/',element: <Home></Home>},
       {path:'/course',element: <Course></Course>,
-    loader: ()=> fetch("http://localhost:5000/allcourse")
+    loader: ()=> fetch("https://education-server-fpalamin.vercel.app/allcourse")
     },
       {path:'/course/:id',element: <Details></Details>,
-    loader: ({params})=> fetch(`http://localhost:5000/allcourse/${params.id}`)
+    loader: ({params})=> fetch(`https://education-server-fpalamin.vercel.app/allcourse/${params.id}`)
     },
       {path:'/faq',element: <Faq></Faq>},
       {path:'/logIn',element: <LogIn></LogIn>},
       {path:'/register',element: <Register></Register>},
       {path:'/checkout/:id',element: <PrivetRoute><CheckOut></CheckOut></PrivetRoute>,
-      loader: ({params})=> fetch(`http://localhost:5000/allcourse/${params.id}`)
+      loader: ({params})=> fetch(`https://education-server-fpalamin.vercel.app/allcourse/${params.id}`)
     },
     {path:'/blog',element:<Blog></Blog>},
     {path:'/profile',element:<Profile></Profile>}

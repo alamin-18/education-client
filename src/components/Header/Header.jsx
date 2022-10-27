@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../Contexts/Theme/Theme';
 import { AuthContext } from '../../Contexts/UserContext/UserContext';
-import { Bars3Icon, MoonIcon, SunIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import { Bars3Icon,  XMarkIcon } from '@heroicons/react/24/solid'
 import { useState } from 'react';
 import logo from '../../img/logo.png'
 
