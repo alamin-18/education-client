@@ -1,5 +1,6 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserContext/UserContext';
 
@@ -16,10 +17,13 @@ const Register = () => {
         register(email, password)
             .then((result => {
                 const user = result.user
+                toast.success(`Successfully sing in!`)
                 // console.log(user)
             }))
             .catch((error) => {
                 console.error(error)
+                const errorMessage = error.message;
+                toast.error(errorMessage)
                 // ..
             });
 
@@ -29,18 +33,28 @@ const Register = () => {
         googleSingin(googleProvider)
             .then(result => {
                 const user = result.user
+                toast.success(`Successfully sing in!`)
                 // console.log(user)
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+            })
+
     }
     const gitHubProvider = new GithubAuthProvider()
     const handleGitHubSingin = () => {
         gitHubSingin(gitHubProvider)
             .then(result => {
                 const user = result.user
+                toast.success(`Successfully sing in!`)
                 console.log(user)
             })
-            .catch(error => console.log(error))
+            .catch(error =>{
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+            })
     }
 
     return (

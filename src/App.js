@@ -13,6 +13,7 @@ import CheckOut from './components/CheckOut/CheckOut';
 import PrivetRoute from './components/PrivetRoute/PrivetRoute';
 import { useContext } from 'react';
 import  { ThemeContext } from './Contexts/Theme/Theme';
+import { Toaster } from 'react-hot-toast';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
   return (
     <div data-theme={dark ? `light`:`dark`}>
       <RouterProvider router={router}></RouterProvider>
+      <Toaster/>
     </div>
   );
 }

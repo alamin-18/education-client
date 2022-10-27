@@ -9,17 +9,17 @@ const Details = () => {
     const { CourseDescription, CourseName, Instructor, basicInfo, picture, group } = details;
     const ref = React.createRef();
     return (
-        <div ref={ref} className='w-2/4 mx-auto border border-red-600'>
+        <div ref={ref} className='lg:w-2/4 mx-auto border border-red-600'>
 
             <img className='' src={picture} alt="" />
             <div className='p-10'>
                 <small>{group}</small>
                 <h1 className='text-3xl font-bold'>{CourseName}</h1>
-                <div className='flex justify-between mt-10'>
+                <div className='lg:flex justify-between mt-10'>
                     <div>
                         <h1 className='text-2xl font-bold mb-10'>COURSE INSTRUCTOR</h1>
-                        <div className='flex gap-4'>
-                            <img className='w-32' src={Instructor[0].img} alt="" />
+                        <div className='flex gap-4 '>
+                            <img className='w-32 mb-4' src={Instructor[0].img} alt="" />
                             <div>
                                 <h1 className='text-xl font-semibold'>{Instructor[0].name}</h1>
                                 <p>{Instructor[0].des}</p>

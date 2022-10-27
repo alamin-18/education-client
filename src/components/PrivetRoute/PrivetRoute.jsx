@@ -7,7 +7,7 @@ const PrivetRoute = ({ children }) => {
     const { user,lodding } = useContext(AuthContext)
     const location = useLocation()
     if(lodding){
-        return <progress className="progress progress-secondary w-56" value="100" max="100"></progress>
+        return <progress className="progress w-full"></progress>
     }
     if (!user) {
         return <Navigate to='/logIn' state={{from: location}} replace></Navigate>

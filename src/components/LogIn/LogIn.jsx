@@ -1,5 +1,6 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserContext/UserContext';
 
@@ -17,9 +18,12 @@ const LogIn = () => {
         logIn(email, password)
             .then(result => {
                 const user = result.user
-                console.log(user);
+                toast.success(`Successfully log in!`)
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+            })
             // console.log(email,password)
         navigate(from, {replace: true})
 
@@ -30,9 +34,13 @@ const LogIn = () => {
         googleSingin(googleProvider)
             .then(result => {
                 const user = result.user
+                toast.success(`Successfully log in!`)
                 console.log(user)
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+            })
         navigate(from,{replace: true})
     }
     //github auth
@@ -41,9 +49,13 @@ const LogIn = () => {
         gitHubSingin(gitHubProvider)
             .then(result => {
                 const user = result.user
+                toast.success(`Successfully log in!`)
                 console.log(user)
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+            })
         navigate(from,{replace: true})
     }
     return (
