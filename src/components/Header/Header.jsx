@@ -20,14 +20,14 @@ const Header = () => {
   }
   return (
     <div>
-      <div className="flex py-4 justify-between bg-slate-700">
+      <div className="flex py-4 justify-between bg-base-100">
         <div className="">
           <Link to='/' className=" ml-4 text-xl flex gap-1"><img className='w-14' src={logo} alt="" />Edulearn</Link>
         </div>
         <div onClick={()=> setOpen(!open)} className='w-8 md:hidden lg:hidden'>
         {open ?<XMarkIcon ></XMarkIcon>: <Bars3Icon></Bars3Icon>}
         </div>
-        <div className={`flex mr-10 absolute duration-500 ease-in md:static lg:static bg-slate-700 ${open ? 'top-14' : 'top-[-150px]'}`}>
+        <div className={`flex mr-10 absolute duration-500 ease-in md:static lg:static bg-base-100 ${open ? 'top-14' : 'top-[-150px]'}`}>
           <ul className=" sm:flex text-xl gap-6">
             <li><Link to='/course'>Course</Link></li>
             <li><Link to='/faq'>FAQ</Link></li>
